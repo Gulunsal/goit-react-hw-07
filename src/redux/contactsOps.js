@@ -1,11 +1,11 @@
-import axios from 'axios'; 
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // MockAPI URL burada tanımlandı:
-const BASE_URL = 'https://67672c3a560fbd14f18d27d4.mockapi.io/contacts';
+const BASE_URL = "https://67672c3a560fbd14f18d27d4.mockapi.io/contacts";
 
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+  "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`${BASE_URL}`);
@@ -13,11 +13,11 @@ export const fetchContacts = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
 
 export const addContact = createAsyncThunk(
-  'contacts/addContact',
+  "contacts/addContact",
   async (contact, thunkAPI) => {
     try {
       const response = await axios.post(`${BASE_URL}`, contact);
@@ -25,11 +25,11 @@ export const addContact = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
 
 export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
+  "contacts/deleteContact",
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`${BASE_URL}/${id}`);
@@ -37,5 +37,5 @@ export const deleteContact = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );

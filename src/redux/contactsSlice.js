@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './contactsOps';
-import { createSelector } from '@reduxjs/toolkit';
-import { selectNameFilter } from './filtersSlice';
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContact } from "./contactsOps";
+import { createSelector } from "@reduxjs/toolkit";
+import { selectNameFilter } from "./filtersSlice";
 
 const initialState = {
   items: [],
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const contactsSlice = createSlice({
-  name: 'contacts',
+  name: "contacts",
   initialState,
   extraReducers: (builder) => {
     builder
@@ -30,7 +30,9 @@ const contactsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.items = state.items.filter((item) => item.id !== action.payload.id);
+        state.items = state.items.filter(
+          (item) => item.id !== action.payload.id,
+        );
       });
   },
 });
@@ -42,8 +44,8 @@ export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, nameFilter) =>
     contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(nameFilter.toLowerCase())
-    )
+      contact.name.toLowerCase().includes(nameFilter.toLowerCase()),
+    ),
 );
 
 // Azaltıcıyı (reducer) varsayılan olarak dışa aktar
